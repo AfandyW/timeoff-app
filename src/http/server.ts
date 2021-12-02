@@ -2,7 +2,9 @@ require('dotenv').config();
 import express from 'express'
 import http from 'http'
 import cors from 'cors'
-import bodyParser from 'body-parser';
+import db from '../infra/db/mysql/models'
+import morgan from 'morgan'
+import router from './routes'
 
 const app = express()
 const server = http.createServer(app)
@@ -10,10 +12,12 @@ const server = http.createServer(app)
 app.use(cors({
     origin: '*',
 }))
-app.use(bodyParser.json())
+app.use(express.json())
 
-app.get("/ping", (req,res) => {
-    return res.status(200).json("pong")
-})
+//only dev
+app.use(morgan("tiny"))
+
+//api-docs
+app.use("/api/v1", router)
 
 export default server;

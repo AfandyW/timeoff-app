@@ -1,0 +1,1057 @@
+{
+    "openapi":"3.0.3",
+    "info": {
+        "title":"TimeOff RestAPI",
+        "description": "TimeOff Backend RestAPI",
+        "version":"1.0"
+    },
+    "servers": [
+        {"url":"https://localhost:5000/api/v1/docs"}
+    ],
+    "paths": {
+        "/timeoff/date":{
+            "get":{
+                "tags": ["TimeOff - @roles(users)"],
+                "responses": {
+                    "200":{
+                        "description": "Success get all timeoff, only approved",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Get All TimeOff"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "john doe"
+                                                    },
+                                                    "id":{
+                                                        "type": "string",
+                                                        "example": "to-123"
+                                                    },
+                                                    "start_date":{
+                                                        "type": "string",
+                                                        "example": "12-11-2021"
+                                                    },
+                                                    "end_date":{
+                                                        "type": "string",
+                                                        "example": "13-11-2021"
+                                                    },
+                                                    "reason":{
+                                                        "type": "string",
+                                                        "example": "orang tua sakit, mo pulang 2 hari"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/timeoff/requested/{employee_id}":{
+            "put":{
+                "tags": ["TimeOff - @roles(users)"],
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "query",
+                        "schema":{
+                            "type": "string",
+                            "example": "e-123"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "id":{
+                                        "type": "string",
+                                        "example": "to-123"
+                                    },
+                                    "remarks":{
+                                        "type": "string",
+                                        "example": "boleh pak"
+                                    },
+                                    "status":{
+                                        "type": "string",
+                                        "example": "approved"
+                                    }
+                                },
+                                "required": [
+                                    "remarks", "status"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success update timeoff",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Update Timeoff"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/timeoff/requested":{
+            "get":{
+                "tags": ["TimeOff - @roles(users)"],
+                "responses": {
+                    "200":{
+                        "description": "Success get all timeoff request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success get all timeoff request"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "employee_id":{
+                                                        "type": "string",
+                                                        "example": "e-123"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "john doe"
+                                                    },
+                                                    "id":{
+                                                        "type": "string",
+                                                        "example": "to-123"
+                                                    },
+                                                    "start_date":{
+                                                        "type": "string",
+                                                        "example": "12-11-2021"
+                                                    },
+                                                    "end_date":{
+                                                        "type": "string",
+                                                        "example": "13-11-2021"
+                                                    },
+                                                    "reason":{
+                                                        "type": "string",
+                                                        "example": "orang tua sakit, mo pulang 2 hari"
+                                                    },
+                                                    "remarks":{
+                                                        "type": "string",
+                                                        "example": ""
+                                                    },
+                                                    "status":{
+                                                        "type": "string",
+                                                        "example": "requested"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/timeoff":{
+            "post":{
+                "tags": ["TimeOff - @roles(users)"],
+                "description": "Create new timeoff",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "start_date":{
+                                        "type": "string",
+                                        "example": "12-11-2021"
+                                    },
+                                    "end_date":{
+                                        "type": "string",
+                                        "example": "13-11-2021"
+                                    },
+                                    "reason":{
+                                        "type": "string",
+                                        "example": "orang tua sakit, mo pulang 2 hari"
+                                    }
+                                },
+                                "required": [
+                                    "start_date", "end_date", "reason"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success create new timoff",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New TimeOff"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "tags": ["TimeOff - @roles(users)"],
+                "responses": {
+                    "200":{
+                        "description": "Success create new timeoff balance",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New TimeOff Balance"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "start_date":{
+                                                        "type": "string",
+                                                        "example": "12-11-2021"
+                                                    },
+                                                    "end_date":{
+                                                        "type": "string",
+                                                        "example": "13-11-2021"
+                                                    },
+                                                    "reason":{
+                                                        "type": "string",
+                                                        "example": "orang tua sakit, mo pulang 2 hari"
+                                                    },
+                                                    "remarks":{
+                                                        "type": "string",
+                                                        "example": "boleh pak."
+                                                    },
+                                                    "status":{
+                                                        "type": "string",
+                                                        "example": "approved"
+                                                    },
+                                                    "reviewer":{
+                                                        "type": "string",
+                                                        "example": "Ayub Aswad"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/{employeeId}/timeoff":{
+            "get":{
+                "tags": ["Timeoff Balance - @roles(admin)"],
+                "parameters": [
+                    {
+                        "name": "employeeId",
+                        "in": "query",
+                        "schema":{
+                            "type": "number",
+                            "example": "e-123"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success create new timeoff balance",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New TimeOff Balance"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "year":{
+                                                        "type": "string",
+                                                        "example": "2020"
+                                                    },
+                                                    "balance":{
+                                                        "type": "number",
+                                                        "example": 10
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Timeoff Balance - @roles(admin)"],
+                "parameters": [
+                    {
+                        "name": "employeeId",
+                        "in": "query",
+                        "schema":{
+                            "type": "number",
+                            "example": "e-123"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody":{
+                    "description": "Create new users",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "year":{
+                                        "type": "string",
+                                        "example": "2020"
+                                    },
+                                    "employee_id":{
+                                        "type": "number",
+                                        "example": "e-123"
+                                    },
+                                    "number":{
+                                        "type": "number",
+                                        "example": "10"
+                                    }
+                                },
+                                "required": [
+                                    "username", "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success create new timeoff balance",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New TimeOff Balance"
+                                        },
+                                        "data":{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        },
+        "/users": {
+            "get":{
+                "tags": ["Users - @roles(admin)"],
+                "description": "Get All Users",
+                "summary": "Roles as admin",
+                "responses": {
+                    "200":{
+                        "description": "Success get data user",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Get Data All Users"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "username":{
+                                                        "type": "string"
+                                                    },
+                                                    "password":{
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/{employeeId}/users":{
+            "post":{
+                "parameters": [
+                    {
+                        "name": "employeeId",
+                        "in": "query",
+                        "schema":{
+                            "type": "number",
+                            "example": "e-123"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": ["Users - @roles(admin)"],
+                "description": "Create new user from employee",
+                "requestBody":{
+                    "description": "Create new users",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "username":{
+                                        "type": "string",
+                                        "example": "johnny"
+                                    },
+                                    "password":{
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "required": [
+                                    "username", "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success create new user",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New Users"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "parameters": [
+                    {
+                        "name": "employeeId",
+                        "in": "query",
+                        "schema":{
+                            "type": "number",
+                            "example": "e-123"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": ["Users - @roles(admin)"],
+                "description": "Get data user from employee",
+                "responses": {
+                    "200":{
+                        "description": "Success get data user",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New Users"
+                                        },
+                                        "data":{
+                                            "type": "object",
+                                            "properties": {
+                                                "username":{
+                                                    "type": "string",
+                                                    "example": "jonny"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "1234456"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employees":{
+            "put":{
+                "tags": ["Employees - @roles(admin)"],
+                "description": "Update data employee",
+                "requestBody":{
+                    "description": "Request body to create new employee",
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "phone":{
+                                        "type": "string",
+                                        "example": "081355558888"
+                                    },
+                                    "email":{
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "user_id":{
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "required": [
+                                    "user_id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success update data employee",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Update data employee"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Employees - @roles(admin)"],
+                "description": "Create new employee",
+                "requestBody":{
+                    "description": "Request body to create new employee",
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "phone":{
+                                        "type": "string",
+                                        "example": "081355558888"
+                                    },
+                                    "email":{
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "phone",
+                                    "email"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Success create new employee",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New Employee"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "tags": ["Employees - @roles(admin)"],
+                "description": "Get all employee",
+                "responses": {
+                    "200":{
+                        "description": "Success get data employees",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "code":{
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "status":{
+                                            "type": "string",
+                                            "example": "Success Create New Employee"
+                                        },
+                                        "data":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "name":{
+                                                        "type": "string",
+                                                        "example": "John Doe"
+                                                    },
+                                                    "phone":{
+                                                        "type": "string",
+                                                        "example": "081355558888"
+                                                    },
+                                                    "email":{
+                                                        "type": "string",
+                                                        "example": "johndoe@gmail.com"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/positions/{id}":{
+            "put":{
+                "tags": ["Positions - @roles(admin)"],
+                "description": "Update new position",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example": "Backend Engineer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Success update new position",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data":{
+                                            "type": "object",
+                                            "properties":{
+                                                "code":{
+                                                    "type": "number",
+                                                    "example": "200"
+                                                },
+                                                "status":{
+                                                    "type": "string",
+                                                    "example": "Success Update Position"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/positions":{
+            "post":{
+                "tags": ["Positions - @roles(admin)"],
+                "description": "Create new position",
+                "requestBody":{
+                    "description": "Request body new position",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example": "Backend Engineer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Success create new position",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data":{
+                                            "type": "object",
+                                            "properties":{
+                                                "code":{
+                                                    "type": "number",
+                                                    "example": "200"
+                                                },
+                                                "status":{
+                                                    "type": "string",
+                                                    "example": "Success Create New Position"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "tags": ["Positions - @roles(admin, users)"],
+                "description": "Get All Position",
+                "responses":{
+                    "200":{
+                        "description": "Success get data position",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data":{
+                                            "type": "object",
+                                            "properties":{
+                                                "code":{
+                                                    "type": "number",
+                                                    "example": "200"
+                                                },
+                                                "status":{
+                                                    "type": "string",
+                                                    "example": "Success Get Data"
+                                                },
+                                                "data":{
+                                                    "type": "array",
+                                                    "items":{
+                                                        "type": "string",
+                                                        "example": ["Backend Engineer", "Software Developer"]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "InternalServerError":{
+                "type": "object",
+                "properties": {
+                    "code":{
+                        "type": "number",
+                        "example": "500"
+                    },
+                    "status":{
+                        "type": "string",
+                        "example": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
