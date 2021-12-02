@@ -16,3 +16,9 @@
     ```
     make down
     ```
+
+# End Point
+
+## API Docs
+### `/api/v1/docs` 
+
