@@ -1,10 +1,12 @@
-// .sequelizerc
-
 const path = require('path');
+require("dotenv").config()
+
+const prefix = process.env.NODE_ENV == "development" || process.env.NODE_ENV == "test" ? "src" : "build/src";
+const configFilename = process.env.NODE_ENV == "development" || process.env.NODE_ENV == "test" ? "database.ts": "database.js"
 
 module.exports = {
-  'config': path.resolve('src/infra/db/mysql', 'database.json'),
-  'models-path': path.resolve('src/infra/db/mysql', 'models'),
-  'seeders-path': path.resolve('src/infra/db/mysql', 'seeders'),
-  'migrations-path': path.resolve('src/infra/db/mysql', 'migrations')
+  'config': path.resolve(`${prefix}/infra/db/mysql`, configFilename),
+  'models-path': path.resolve(`${prefix}/infra/db/mysql`, 'models'),
+  'seeders-path': path.resolve(`${prefix}/infra/db/mysql`, 'seeders'),
+  'migrations-path': path.resolve(`${prefix}/infra/db/mysql`, 'migrations')
 };
