@@ -12,7 +12,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       employee_id: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Employees',
+          key: 'id'
+        }
       },
       balance:{
         type: Sequelize.INTEGER

@@ -4,7 +4,7 @@ module.exports = {
     development: {
         username: process.env.DEVELOPMENT_DB_USERNAME,
         password: process.env.DEVELOPMENT_DB_PASSWORD,
-        database: process.env.DEVELOPMENT_DB_DATABASE,
+        database: process.env.DEVELOPMENT_DB,
         host: process.env.DEVELOPMENT_DB_HOST,
         port: process.env.DEVELOPMENT_DB_PORT,
         dialect: "mysql",

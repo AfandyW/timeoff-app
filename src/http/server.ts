@@ -5,6 +5,7 @@ import cors from 'cors'
 import db from '../infra/db/mysql/models'
 import morgan from 'morgan'
 import router from './routes'
+import e from 'express';
 
 const app = express()
 const server = http.createServer(app)
