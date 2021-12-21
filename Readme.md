@@ -17,6 +17,15 @@
     make down
     ```
 
+- Create Database
+    ```
+    make database
+    ```
+- Do migrate
+    ```
+    make migrate
+    ```
+
 # End Point
 
 ## API Docs

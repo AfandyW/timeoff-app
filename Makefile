@@ -6,3 +6,11 @@ down:
 	docker-compose down
 env:
 	cp .env.example .env && npm install
+database:
+	sequelize db:create
+migrate:
+	sequelize db:migrate
+drop:
+	sequelize db:drop
+rund: 
+	npm run dev
