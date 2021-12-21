@@ -1,30 +1,27 @@
 import { Optional, Model, DataTypes, Sequelize, BuildOptions, Association } from "sequelize";
-
-import UserFactory, {UserModel} from './users'
-import PositionFactory, {PositionModel} from "./positions";
-import TimeBalanceFactory from "./time-balance";
-import TimeOffFactory from "./time-off";
+import PositionFactory from './positions'
 
 export interface EmployeeAttributes {
     id?: number;
-    user_id?: number;
-    positition_id: number;
+    position_id: number;
     name: string;
     phone: string;
     email: string;
-    direct_report_employee: number;
+    direct_report_employee: number | null;
 }
 
-export type EmployeeCreationAttributes = Optional<EmployeeAttributes, "id">;
+export type EmployeeCreationAttributes = Optional<
+    EmployeeAttributes, 
+    | "id" 
+    | "direct_report_employee">;
 
 export class EmployeeModel extends Model<EmployeeAttributes,EmployeeCreationAttributes> implements EmployeeAttributes{
     public id!:number
-    public user_id!: number;
-    public positition_id!: number;
+    public position_id!: number;
     public name!: string;
     public phone!: string;
     public email!: string;
-    public direct_report_employee!: number;
+    public direct_report_employee!: number | null;
 
     public readonly createdAt!:Date
     public readonly updatedAt!:Date
@@ -36,17 +33,14 @@ export type TEmployee = typeof Model & {
 
 const EmployeeFactory = (sequelize: Sequelize): TEmployee => {
     const EmployeeModel = <TEmployee>sequelize.define(
-        "users", {
+        "employees", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,
                 primaryKey: true,
                 unique: true,
             },
-            user_id: {
-                type: DataTypes.INTEGER.UNSIGNED
-            },
-            positition_id: {
+            position_id: {
                 type: DataTypes.INTEGER.UNSIGNED
             },
             name: {
@@ -66,7 +60,10 @@ const EmployeeFactory = (sequelize: Sequelize): TEmployee => {
         }
     )
     // EmployeeModel.belongsTo( UserFactory(sequelize))
-    // EmployeeModel.belongsTo( PositionFactory(sequelize))
+    EmployeeModel.belongsTo( PositionFactory(sequelize), {
+        foreignKey: 'position_id',
+        as: 'position'
+    })
     // EmployeeModel.hasMany( TimeOffFactory(sequelize), {
     //     foreignKey: 'employee_id',
     //     as: 'employees'

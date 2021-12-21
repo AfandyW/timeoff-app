@@ -1,6 +1,4 @@
-import e from "express";
 import { Optional, Model, DataTypes, Sequelize, BuildOptions, Association } from "sequelize";
-import EmployeeFactory from "./employees";
 
 export interface PositionAttributes {
     id?: number;
