@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      positition_id: {
+      position_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -22,10 +22,12 @@ module.exports = {
       },
       phone: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       direct_report_employee: {
         type: Sequelize.INTEGER
