@@ -114,7 +114,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success update timeoff",
                         "content": {
                             "application/json":{
@@ -123,7 +123,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -255,7 +255,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success create new timoff",
                         "content": {
                             "application/json":{
@@ -264,7 +264,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -459,7 +459,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success create new timeoff balance",
                         "content": {
                             "application/json":{
@@ -468,7 +468,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -588,7 +588,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success create new user",
                         "content": {
                             "application/json":{
@@ -597,7 +597,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -717,7 +717,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success update data employee",
                         "content": {
                             "application/json":{
@@ -726,7 +726,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -782,7 +782,7 @@
                     }
                 },
                 "responses": {
-                    "200":{
+                    "201":{
                         "description": "Success create new employee",
                         "content": {
                             "application/json":{
@@ -791,7 +791,7 @@
                                     "properties":{
                                         "code":{
                                             "type": "number",
-                                            "example": "200"
+                                            "example": "201"
                                         },
                                         "status":{
                                             "type": "string",
@@ -891,7 +891,7 @@
                     }
                 },
                 "responses":{
-                    "200":{
+                    "201":{
                         "description": "Success update new position",
                         "content": {
                             "application/json":{
@@ -903,7 +903,7 @@
                                             "properties":{
                                                 "code":{
                                                     "type": "number",
-                                                    "example": "200"
+                                                    "example": "201"
                                                 },
                                                 "status":{
                                                     "type": "string",
@@ -950,7 +950,7 @@
                     }
                 },
                 "responses":{
-                    "200":{
+                    "201":{
                         "description": "Success create new position",
                         "content": {
                             "application/json":{
@@ -962,7 +962,7 @@
                                             "properties":{
                                                 "code":{
                                                     "type": "number",
-                                                    "example": "200"
+                                                    "example": "201"
                                                 },
                                                 "status":{
                                                     "type": "string",
