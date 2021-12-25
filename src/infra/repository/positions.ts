@@ -1,5 +1,5 @@
-import { IPosition, Position, PositionMap } from "infra/domain/position/model";
-import { IPositionRepository } from "infra/domain/position/repository";
+import { IPosition, Position, PositionMap } from "./../../infra/domain/position/model";
+import { IPositionRepository } from "./../../infra/domain/position/repository";
 import model from "../db/mysql/models"
 
 export class PositionRepo implements IPositionRepository{

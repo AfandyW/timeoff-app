@@ -1,6 +1,6 @@
-import { IPositionDTO, PositionMap } from "infra/domain/position/model"
-import { NotFoundError } from "infra/helper/error"
-import { positionRepo } from "infra/repository"
+import { IPositionDTO, PositionMap } from "./../../infra/domain/position/model"
+import { NotFoundError } from "./../../infra/helper/error"
+import { positionRepo } from "./../../infra/repository"
 
 export class PositionService{
     async getAllPosition(): Promise<IPositionDTO[]>{

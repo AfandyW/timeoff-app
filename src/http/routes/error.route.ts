@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express"
 import httpStatus from "http-status"
-import { HTTPError, NotFoundError } from "infra/helper/error";
+import { HTTPError, NotFoundError } from "./../../infra/helper/error";
 
 interface payloadHttpError{
     code: number;
