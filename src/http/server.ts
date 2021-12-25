@@ -9,7 +9,6 @@ import router from './routes'
 import { errorHandler, notFoundErrorHandler } from './routes/error.route';
 
 const app = express()
-const server = http.createServer(app)
 
 app.use(cors({
     origin: '*',
@@ -19,13 +18,15 @@ app.use(express.json())
 //only dev
 app.use(morgan("tiny"))
 
-//catch if not route
-app.use("*", notFoundErrorHandler)
-
 //api-docs
 app.use("/api/v1", router)
 
+//catch if not route
+app.use("*", notFoundErrorHandler)
+
 //catch error
-router.use(errorHandler)
+app.use(errorHandler)
+
+const server = http.createServer(app)
 
 export default server;

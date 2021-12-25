@@ -1,8 +1,5 @@
 import {Router} from "express"
 import swagger from "./swagger.router"
-import model from "../../infra/db/mysql/models"
-import { responses } from "../../infra/helper/response"
-import { NotFoundError } from "../../infra/helper/error"
 import positionRouter from "./../routes/positions.route"
 
 const router = Router()

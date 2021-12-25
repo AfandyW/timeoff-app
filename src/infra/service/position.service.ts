@@ -13,7 +13,6 @@ export class PositionService{
         name:string,
     }): Promise<IPositionDTO>{
         const result = await positionRepo.save(payload.name)
-
         return PositionMap.toDTO(result)
     }
 

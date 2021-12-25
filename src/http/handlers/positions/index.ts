@@ -6,7 +6,7 @@ import { positionService } from './../../../infra/service'
 
 export async function get(req: Request, res: Response, next: NextFunction): Promise<void>{
     try{
-        const positions = positionService.getAllPosition()
+        const positions = await positionService.getAllPosition()
 
         const response : responses = {
             code : httpStatus.OK,
@@ -26,7 +26,7 @@ export async function put(req: Request, res: Response, next: NextFunction): Prom
         const {name} = req.body
         const {id} = req.params
         
-        positionService.updateNamePosition({
+        await positionService.updateNamePosition({
             id, name
         })
 
@@ -43,7 +43,9 @@ export async function put(req: Request, res: Response, next: NextFunction): Prom
 
 export async function post(req: Request, res: Response, next: NextFunction): Promise<void>{
     try{
-        const {name}: IPositionDTO = req.body
+        const {name} = req.body
+
+        await positionService.createNewPosition({name})
 
         const response : responses = {
             code : 201,
