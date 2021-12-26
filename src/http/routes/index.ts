@@ -14,6 +14,6 @@ router.get('/ping', async (req,res) => {
 
 router.use('/position', positionRouter)
 router.use('/employee', employeeRouter)
-router.use('/employee', userRouter)
+router.use('/user', userRouter)
 
 export default router;
