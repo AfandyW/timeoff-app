@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import httpStatus from 'http-status'
-import { responses } from 'infra/helper/response'
-import { IPositionDTO } from './../../../infra/domain/position/model'
+import { responses } from './../../../infra/helper/response'
 import { positionService } from './../../../infra/service'
 
 export async function get(req: Request, res: Response, next: NextFunction): Promise<void>{
