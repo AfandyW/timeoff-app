@@ -3,6 +3,7 @@ import EmployeeFactory, {EmployeeModel} from './employees'
 
 export interface UserAttributes {
     id?: number;
+    employee_id: number;
     username: string;
     password: string;
 }
@@ -13,6 +14,7 @@ export class UserModel extends Model<UserAttributes,UserCreationAttributes> impl
     public id!:number
     public username!: string
     public password!: string
+    public employee_id!: number
 
     public readonly createdAt!:Date
     public readonly updatedAt!:Date
@@ -36,6 +38,9 @@ const UserFactory = (sequelize: Sequelize): TUser => {
                 autoIncrement: true,
                 primaryKey: true,
                 unique: true,
+            },
+            employee_id: {
+                type: DataTypes.INTEGER.UNSIGNED,
             },
             username: {
                 type: DataTypes.STRING
