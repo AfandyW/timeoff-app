@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       year: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       employee_id: {
         allowNull: false,

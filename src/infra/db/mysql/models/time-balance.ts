@@ -4,8 +4,7 @@ import EmployeeFactory from './employees'
 
 export interface TimeBalanceAttributes {
     id?: number;
-    name: string;
-    year: number;
+    year: string;
     employee_id: number;
     balance: number;
 }
@@ -14,8 +13,7 @@ export type TimeBalanceCreationAttributes = Optional<TimeBalanceAttributes, "id"
 
 export class TimeBalanceModel extends Model<TimeBalanceAttributes,TimeBalanceCreationAttributes> implements TimeBalanceAttributes{
     public id!:number
-    public name!: string
-    public year!: number;
+    public year!: string;
     public employee_id!: number;
     public balance!: number;
 
@@ -37,14 +35,14 @@ const TimeBalanceFactory = (sequelize: Sequelize): TTimeBalance => {
                 unique: true,
             },
             year: {
-                type: DataTypes.INTEGER
+                type: DataTypes.STRING
             },
             employee_id: {
                 allowNull: false,
                 type: DataTypes.INTEGER
             },
             balance: {
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER.UNSIGNED
             },
         }
     )
