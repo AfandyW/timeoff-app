@@ -1,8 +1,9 @@
 import {Router} from "express"
 import swagger from "./swagger.router"
-import positionRouter from "./../routes/positions.route"
-import employeeRouter from "./../routes/employees.route"
-import userRouter from "./../routes/users.route"
+import positionsRouter from "./../routes/positions.route"
+import employeesRouter from "./../routes/employees.route"
+import usersRouter from "./../routes/users.route"
+import timeoffBalanceRouter from "./../routes/timeoff-balance.route"
 
 const router = Router()
 
@@ -12,8 +13,10 @@ router.get('/ping', async (req,res) => {
     res.json('message :pong')
 })
 
-router.use('/position', positionRouter)
-router.use('/employee', employeeRouter)
-router.use('/user', userRouter)
+router.use('/positions', positionsRouter)
+router.use('/employees', employeesRouter)
+
+router.use('/employees/:employee_id/users', usersRouter)
+router.use('/employees/:employee_id/timeoff-balance', timeoffBalanceRouter)
 
 export default router;
