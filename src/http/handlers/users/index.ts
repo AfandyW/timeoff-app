@@ -19,6 +19,23 @@ export async function get(req: Request, res: Response, next: NextFunction): Prom
     }
 }
 
+export async function getByEmployee(req: Request, res: Response, next: NextFunction): Promise<void>{
+    try{
+        const {employee_id} = req.params
+        const user = await userService.getUser(employee_id)
+
+        const response : responses = {
+            code : httpStatus.OK,
+            status: "Success Get Data",
+            data: user
+        }
+
+        res.status(httpStatus.OK).json(response)
+    } catch(error){
+        next(error)
+    }
+}
+
 
 export async function put(req: Request, res: Response, next: NextFunction): Promise<void>{
     try{

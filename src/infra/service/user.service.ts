@@ -10,6 +10,13 @@ export class UserService{
         return result.map((data) => UserMap.toDTO(data))
     }
 
+    async getUser(id:string): Promise<IUserDTO> {
+        const employeeId: number = parseInt(id)
+        const result = await userRepo.findByIdEmployee(employeeId)
+
+        return UserMap.toDTO(result)
+    }
+
     async createUserEmployee(payload: {
         employee_id: string,
         username: string,

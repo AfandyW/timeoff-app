@@ -1,11 +1,13 @@
 import { Router } from "express";
-import {get, put, post}from "./../handlers/users"
+import {get, put, post, getByEmployee}from "./../handlers/users"
 
 const router = Router()
 
 router.get('/', get)
 
-router.put('/:id', put)
+router.get('/:employee_id', getByEmployee)
+
+router.put('/:employee_id', put)
 
 router.post('/', post)
 
