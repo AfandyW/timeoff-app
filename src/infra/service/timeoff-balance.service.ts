@@ -1,6 +1,6 @@
-import { ITimeOffBalanceDTO, TimeOffMap } from "infra/domain/timeoff-balance/model";
-import { NotFoundError } from "infra/helper/error";
-import { timeOffBalanceRepo } from "infra/repository";
+import { ITimeOffBalanceDTO, TimeOffBalanceMap } from "../domain/timeoff-balance/model";
+import { NotFoundError } from "../helper/error";
+import { timeOffBalanceRepo } from "../repository";
 
 export class TimeOffBalanceService{
     async createNewTimeOffBalance(payload: {
@@ -12,7 +12,7 @@ export class TimeOffBalanceService{
         const {year, balance} = payload
         const result = await timeOffBalanceRepo.save({employee_id: employeeId, year, balance})
 
-        return TimeOffMap.toDTO(result)
+        return TimeOffBalanceMap.toDTO(result)
     }
 
     async getTimeOffBalance(
@@ -21,7 +21,7 @@ export class TimeOffBalanceService{
         const employeeId: number = parseInt(employee_id)
         const result = await timeOffBalanceRepo.findAllByIdEmployee(employeeId)
 
-        return result.map((data) => TimeOffMap.toDTO(data))
+        return result.map((data) => TimeOffBalanceMap.toDTO(data))
     }
 
     async updateTimeOffBalance(payload:{

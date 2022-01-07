@@ -1,5 +1,5 @@
 import { ITimeOffBalanceRepository } from "./../../infra/domain/timeoff-balance/repository";
-import { ITimeOffBalance, TimeOffBalance, TimeOffMap } from "./../../infra/domain/timeoff-balance/model";
+import { ITimeOffBalance, TimeOffBalance, TimeOffBalanceMap } from "./../../infra/domain/timeoff-balance/model";
 import model from "./../db/mysql/models"
 import { NotFoundError } from "./../../infra/helper/error";
 
@@ -13,7 +13,7 @@ export class TimeOffBalanceRepository implements ITimeOffBalanceRepository{
 
         if (!result) throw new NotFoundError("TimeOff Balance Not Found")
 
-        return result.map((data) => TimeOffMap.toDomain(data))
+        return result.map((data) => TimeOffBalanceMap.toDomain(data))
     }
 
     async findByPk(id: number): Promise<TimeOffBalance | null> {
@@ -21,7 +21,7 @@ export class TimeOffBalanceRepository implements ITimeOffBalanceRepository{
 
         if (!result) return null
 
-        return TimeOffMap.toDomain(result)
+        return TimeOffBalanceMap.toDomain(result)
     }
 
     async save(data: { 
@@ -36,7 +36,7 @@ export class TimeOffBalanceRepository implements ITimeOffBalanceRepository{
             balance: data.balance,
         })
         
-        return TimeOffMap.toDomain(result)
+        return TimeOffBalanceMap.toDomain(result)
     }
 
     async update(data: { 

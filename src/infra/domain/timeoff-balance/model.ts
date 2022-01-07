@@ -1,4 +1,4 @@
-import { TimeBalanceModel } from "infra/db/mysql/models/time-balance";
+import { TimeBalanceModel } from "./../../../infra/db/mysql/models/time-balance";
 
 export interface ITimeOffBalance {
     id?: number |null,
@@ -32,10 +32,16 @@ export class TimeOffBalance implements ITimeOffBalance{
         return new TimeOffBalance(data)
     }
 
+    update(data: {year: string,balance: number}){
+        const {year, balance} = data
+        if (year) this.year = year
+        if (balance) this.balance = balance
+    }
+
     //todo logic bisnis
 }
 
-export class TimeOffMap{
+export class TimeOffBalanceMap{
     public static toDomain(data: TimeBalanceModel): TimeOffBalance{
         return TimeOffBalance.create({
             id : data.id,
@@ -45,7 +51,7 @@ export class TimeOffMap{
         })
     }
 
-    public static toDTO(data: TimeOffBalance): ITimeOffBalanceDTO{
+    public static toDTO(data: ITimeOffBalance): ITimeOffBalanceDTO{
         const timeOffBalance: ITimeOffBalanceDTO = {
             id : data.id,
             employee_id : data.employee_id,
