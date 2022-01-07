@@ -19,3 +19,9 @@ export class NotFoundError extends HTTPError {
         super(message, httpStatus.NOT_FOUND)
     }
 }
+
+export class ForbidenError extends HTTPError {
+    constructor(message: string ) {
+        super(message, httpStatus.FORBIDDEN)
+    }
+}
