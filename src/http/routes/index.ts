@@ -4,6 +4,7 @@ import positionsRouter from "./../routes/positions.route"
 import employeesRouter from "./../routes/employees.route"
 import usersRouter from "./../routes/users.route"
 import timeoffBalanceRouter from "./../routes/timeoff-balance.route"
+import timeOffRouter from "./../routes/timeoff.route"
 
 const router = Router()
 
@@ -18,5 +19,7 @@ router.use('/employees', employeesRouter)
 
 router.use('/employees/:employee_id/users', usersRouter)
 router.use('/employees/:employee_id/timeoff-balance', timeoffBalanceRouter)
+
+router.use('/timeoff', timeOffRouter)
 
 export default router;

@@ -41,7 +41,7 @@ export class PositionMap {
         })
     }
 
-    public static toDTO(position: Position): IPositionDTO {
+    public static toDTO(position: IPosition): IPositionDTO {
         const Position: IPositionDTO = {
             id: position.id,
             name: position.name
