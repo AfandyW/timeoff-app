@@ -22,6 +22,18 @@ export class UserRepository implements IUserRepository{
         return UserMap.toDomain(result)
     }
 
+    async findByUsername(username: string):Promise<User>{
+        const result = await model.User.findOne({
+            where: {
+                username: username
+            }
+        })
+
+        if (!result) throw new NotFoundError("Users Not Found")
+
+        return UserMap.toDomain(result)
+    }
+
     async save(data: {
         employee_id: number,
         username: string,
