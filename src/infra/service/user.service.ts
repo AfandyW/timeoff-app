@@ -1,5 +1,6 @@
 import { IUserDTO, UserMap } from "./../../infra/domain/user/model";
 import { NotFoundError } from "./../../infra/helper/error";
+import { hassPassword } from "./../../infra/helper/security/bycrpt";
 import { userRepo } from "./../../infra/repository";
 
 export class UserService{
@@ -28,10 +29,12 @@ export class UserService{
 
         if (employeeHasUser) throw new NotFoundError("Employee Already Have User")
 
+        const password = await hassPassword(payload.password)
+
         const result = await userRepo.save({
             employee_id : idEmployee,
             username: payload.username,
-            password: payload.password
+            password: password,
         })
 
         return UserMap.toDTO(result)
@@ -47,11 +50,13 @@ export class UserService{
         const user = await userRepo.findByIdEmployee(idEmployee)
 
         if (!user) throw new NotFoundError("User Not Found")
+
+        const password = await hassPassword(payload.password)
         
         await userRepo.update({
             employee_id : idEmployee,
             username: payload.username,
-            password: payload.password
+            password: password
         })
 
         return null
