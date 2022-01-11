@@ -1,5 +1,4 @@
 import { Optional, Model, DataTypes, Sequelize, BuildOptions, Association } from "sequelize";
-import PositionFactory from './positions'
 
 export interface EmployeeAttributes {
     id?: number;
@@ -7,13 +6,10 @@ export interface EmployeeAttributes {
     name: string;
     phone: string;
     email: string;
-    direct_report_employee: number | null;
+    direct_report_employee?: number;
 }
 
-export type EmployeeCreationAttributes = Optional<
-    EmployeeAttributes, 
-    | "id" 
-    | "direct_report_employee">;
+export type EmployeeCreationAttributes = Optional<EmployeeAttributes, "id">;
 
 export class EmployeeModel extends Model<EmployeeAttributes,EmployeeCreationAttributes> implements EmployeeAttributes{
     public id!:number
@@ -21,7 +17,7 @@ export class EmployeeModel extends Model<EmployeeAttributes,EmployeeCreationAttr
     public name!: string;
     public phone!: string;
     public email!: string;
-    public direct_report_employee!: number | null;
+    public direct_report_employee!: number;
 
     public readonly createdAt!:Date
     public readonly updatedAt!:Date
@@ -59,19 +55,6 @@ const EmployeeFactory = (sequelize: Sequelize): TEmployee => {
             },
         }
     )
-    // EmployeeModel.belongsTo( UserFactory(sequelize))
-    EmployeeModel.belongsTo( PositionFactory(sequelize), {
-        foreignKey: 'position_id',
-        as: 'position'
-    })
-    // EmployeeModel.hasMany( TimeOffFactory(sequelize), {
-    //     foreignKey: 'employee_id',
-    //     as: 'employees'
-    // })
-    // EmployeeModel.hasMany( TimeBalanceFactory(sequelize), {
-    //     foreignKey: 'employee_id',
-    //     as: 'employees'
-    // })
     return EmployeeModel
 }
 
