@@ -43,10 +43,10 @@ export class TimeOff implements ITimeOff{
         this.status = status
     }
 
-    update(start_date: string, end_date:string, remakrs: string) {
+    update(start_date: string, end_date:string, remarks: string) {
         if (start_date) this.start_date = start_date
         if (end_date) this.end_date = end_date
-        if (remakrs) this.remarks = remakrs
+        if (remarks) this.remarks = remarks
     }
 
     public static create(data:ITimeOff){
