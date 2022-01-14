@@ -39,13 +39,9 @@ export class TimeOffBalanceRepository implements ITimeOffBalanceRepository{
         return TimeOffBalanceMap.toDomain(result)
     }
 
-    async update(data: { 
-        employee_id: number; 
-        year: string; 
-        balance: number; 
-    }): Promise<null> {
+    async update(data: ITimeOffBalance): Promise<null> {
         
-        await model.TimeBalance.update({year: data.year, balance: data.balance},{
+        await model.TimeBalance.update({balance: data.balance},{
             where: {
                 employee_id: data.employee_id
             }

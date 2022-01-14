@@ -26,7 +26,6 @@ export class TimeOffBalanceService{
 
     async updateTimeOffBalance(payload:{
         employee_id: string,
-        year: string,
         balance: number
     }): Promise<null>{
         const employeeId: number = parseInt(payload.employee_id)
@@ -35,8 +34,11 @@ export class TimeOffBalanceService{
 
         if (!timeOffBalance) throw new NotFoundError("TimeOffBalance Not Found")
 
-        const {year, balance} = payload
-        await timeOffBalanceRepo.update({employee_id: employeeId, year, balance})
+        const {balance} = payload
+
+        timeOffBalance.updateBalance(balance)
+
+        await timeOffBalanceRepo.update(timeOffBalance)
 
         return null
     }

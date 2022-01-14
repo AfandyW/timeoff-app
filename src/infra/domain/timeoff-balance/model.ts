@@ -32,9 +32,7 @@ export class TimeOffBalance implements ITimeOffBalance{
         return new TimeOffBalance(data)
     }
 
-    update(data: {year: string,balance: number}){
-        const {year, balance} = data
-        if (year) this.year = year
+    updateBalance(balance: number){
         if (balance) this.balance = balance
     }
 
