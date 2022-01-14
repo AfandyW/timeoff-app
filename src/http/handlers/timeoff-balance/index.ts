@@ -47,7 +47,7 @@ export async function update(req: Request, res: Response, next: NextFunction): P
         const {employee_id} = req.params
 
         await timeoffBalanceService.updateTimeOffBalance({
-            employee_id, year, balance
+            employee_id, balance
         })
 
         const response : responses = {
