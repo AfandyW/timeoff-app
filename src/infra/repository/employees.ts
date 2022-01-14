@@ -31,12 +31,14 @@ export class EmployeeRepository implements IEmployeeRepository{
     }
 
     async update(data: IEmployee): Promise<null>{
-        const {id, position_id, name, phone, email } = data
+        const {id, position_id, name, phone, email, direct_report_employee } = data
+    
         await model.Employee.update({
             position_id: position_id!,
             name: name,
             phone: phone,
-            email: email
+            email: email,
+            direct_report_employee: direct_report_employee!,
         }, {
             where: {
                 id:id

@@ -54,7 +54,7 @@ export async function put(
     next: NextFunction,
 ): Promise<void> {
     try{
-        const {position_id, name, phone, email} = req.body 
+        const {position_id, name, phone, email, direct_report_employee} = req.body 
         const {id} = req.params
 
         await employeeService.updateEmployee({
@@ -62,7 +62,8 @@ export async function put(
             position_id,
             name,
             phone,
-            email
+            email,
+            direct_report_employee,
         })
 
         const response : responses = {

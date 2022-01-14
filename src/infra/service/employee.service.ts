@@ -31,9 +31,11 @@ export class EmployeeService{
         name: string,
         phone: string,
         email: string,
+        direct_report_employee: string,
     }): Promise<void>{
 
         const id = parseInt(payload.id)
+        const directReportEmployee = parseInt(payload.direct_report_employee)
 
         const employee = await employeeRepo.findByPk(id)
 
@@ -44,7 +46,8 @@ export class EmployeeService{
             position_id : payload.position_id,
             name : payload.name,
             phone : payload.phone,
-            email : payload.email
+            email : payload.email,
+            direct_report_employee: directReportEmployee,
         })
 
         return
