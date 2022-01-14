@@ -29,7 +29,7 @@ export type TEmployee = typeof Model & {
 
 const EmployeeFactory = (sequelize: Sequelize): TEmployee => {
     const EmployeeModel = <TEmployee>sequelize.define(
-        "employees", {
+        "Employees", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,

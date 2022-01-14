@@ -27,7 +27,7 @@ export type TTimeBalance = typeof Model & {
 
 const TimeBalanceFactory = (sequelize: Sequelize): TTimeBalance => {
     const TimeBalanceModel = <TTimeBalance>sequelize.define(
-        "users", {
+        "Time_Balances", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,

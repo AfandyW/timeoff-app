@@ -32,7 +32,7 @@ export type TUser = typeof Model & {
 
 const UserFactory = (sequelize: Sequelize): TUser => {
     const UserModel = <TUser>sequelize.define(
-        "users", {
+        "Users", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,

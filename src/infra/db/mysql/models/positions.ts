@@ -21,7 +21,7 @@ export type TPosition = typeof Model & {
 
 const PositionFactory = (sequelize: Sequelize): TPosition => {
     const PositionModel = <TPosition>sequelize.define(
-        "positions", {
+        "Positions", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,

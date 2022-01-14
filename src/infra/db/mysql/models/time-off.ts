@@ -32,7 +32,7 @@ export type TTimeOff = typeof Model & {
 
 const TimeOffFactory = (sequelize: Sequelize): TTimeOff => {
     const TimeOffModel = <TTimeOff>sequelize.define(
-        "users", {
+        "Timeoffs", {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,
