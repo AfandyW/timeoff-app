@@ -41,7 +41,7 @@ export class EmployeeService{
 
         if (!employee) throw new NotFoundError("Employee Not Found")
 
-        await employeeRepo.update({
+        employee.update({
             id: id,
             position_id : payload.position_id,
             name : payload.name,
@@ -49,6 +49,8 @@ export class EmployeeService{
             email : payload.email,
             direct_report_employee: directReportEmployee,
         })
+
+        await employeeRepo.update(employee)
 
         return
     }
