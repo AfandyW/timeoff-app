@@ -43,7 +43,7 @@ export async function post(req: Request, res: Response, next: NextFunction): Pro
 
 export async function update(req: Request, res: Response, next: NextFunction): Promise<void>{
     try{
-        const {year, balance} = req.body
+        const {balance} = req.body
         const {employee_id} = req.params
 
         await timeoffBalanceService.updateTimeOffBalance({
