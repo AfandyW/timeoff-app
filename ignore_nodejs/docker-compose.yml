@@ -31,8 +31,8 @@ services:
   #     dockerfile: Dockerfile
   #     target: base
   #   volumes:
-  #     - ./src:/home/node/app/src
-  #     - ./nodemon.json:/home/node/app/nodemon.json
+  #     - ./src:/home/node/rest/src
+  #     - ./nodemon.json:/home/node/rest/nodemon.json
   #   container_name: ts-node-docker
   #   expose:
   #     - '5000'
